@@ -56,7 +56,7 @@ var d = new Date();
 var theDate = new Date(document.lastModified); 
 theDate.setTime((theDate.getTime()+(60*60)) ) 
 with (theDate) { 
-document.write("<i>Last updated "+weekday[getDay()]+', '+months[getMonth()]+' '+getDate()+', '+d.getFullYear()+' at '+getHours()+':'+getMinutes()+" GMT</i>") 
+document.write("<i>Last updated "+weekday[getDay()]+', '+months[getMonth()]+' '+getDate()+', '+d.getFullYear()+' at '+d.getHours()+':'+getMinutes()+" EST</i>") 
 } 
 </script>
 
