@@ -37,12 +37,14 @@
 
 <p align="center">Last Updated 3/30/2014</p>
 
-<p align="center">
-The current date is
-<% import datetime
-print datetime.date.today().strftime("%d:%m:%y")
-%>
-</p>
+<script language="javascript"> 
+months = ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
+var theDate = new Date(document.lastModified); 
+theDate.setTime((theDate.getTime()+(5000*60*60)) ) 
+with (theDate) { 
+document.write("<i>Last updated "+getDate()+' '+months[getMonth()]+' '+getYear()+' '+getHours()+':'+getMinutes()+" GMT</i>") 
+} 
+</script> 
 
 </div>
 
