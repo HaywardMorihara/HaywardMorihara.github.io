@@ -37,12 +37,23 @@
 
 <script language="javascript"> 
 months = ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
+
 var d=new Date();
+var hours = d.getHours();
+var suffix = "AM";
+if(hours > 12){
+	suffix = "PM";
+	hours = hours - 12;
+}
+	
+
 var theDate = new Date(document.lastModified); 
 theDate.setTime((theDate.getTime()+(60*60)));
+
 var minutes = theDate.getMinutes(); 
 if (minutes < 10)
 	minutes = "0" + minutes
+
 with (theDate) { 
 document.write("<p>Last updated "+months[getMonth()]+' '+getDate()+', '+d.getFullYear()+' at '+d.getHours()+':'+minutes+" EST</p>"); 
 } 
