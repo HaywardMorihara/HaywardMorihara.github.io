@@ -65,22 +65,26 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
 
 
     <script>
+		var two = new Two({
+      		fullscreen: true,
+      		autostart: true
+    	}).appendTo(document.body);
+
       var svgObject = document.getElementsByTagName('object')[0];
       console.log(svgObject);
       svgObject.onload = function(){
         var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
         console.log(mySvg);
-        var two = new Two();
         console.log(two);
         var shape = two.interpret(mySvg);
         console.log(shape);
         // And have translation, rotation, scale like all shapes.
-		shape.tranlation.set(two.width / 2, two.height / 2);
+		shape.translation.set(two.width / 2, two.height / 2);
 		shape.rotation = Math.PI;
 		shape.scale = 0.75;
-
-        two.update();
       };
+
+      two.update();
     </script>
 
 </body>
