@@ -14,6 +14,8 @@
 <div id="draw-group"></div>
 
     <script>
+    	var mySvg;
+    	var shape;
 
       	var elem = document.getElementById('draw-group');
 	  	var two = new Two({ fullscreen:true, autostart: true }).appendTo(elem);
@@ -22,16 +24,12 @@
       	svgObject.style.visibility = "hidden";
       	console.log(svgObject);
       	svgObject.onload = function(){
-        	var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
-        	console.log(mySvg);
-        	console.log(two);
-        	var shape = two.interpret(mySvg);
-        	console.log(shape);
-        	// And have translation, rotation, scale like all shapes.
-			shape.translation.set(two.width / 2, two.height);
-			shape.rotation = Math.PI;
-			shape.scale = 0.75;
+        	mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
+        	shape = two.interpret(mySvg);
       	};
+      	shape.translation.set(two.width / 2, two.height);
+		shape.rotation = Math.PI;
+		shape.scale = 0.75;
       	two.update();
     </script>
 
