@@ -66,9 +66,12 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
 
     <script>
       var svgObject = document.getElementsByTagName('object')[0];
+      console.log(svgObject);
       svgObject.onload = function(){
         var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
+        console.log(mySvg);
         var two = new Two();
+        console.log(two);
         var shape = two.interpret(mySvg);
         console.log(shape);
         // And have translation, rotation, scale like all shapes.
