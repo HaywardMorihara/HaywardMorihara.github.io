@@ -71,6 +71,7 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
     	}).appendTo(document.body);
 
       var svgObject = document.getElementsByTagName('object')[0];
+      svgObject.style.visibility = "hidden";
       console.log(svgObject);
       svgObject.onload = function(){
         var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
