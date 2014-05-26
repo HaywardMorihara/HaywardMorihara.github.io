@@ -9,7 +9,7 @@
 
 <body>
 
-<object type="image/svg+xml" data="alpha.svg" id="mysvg"></object>
+<object type="image/svg+xml" data="test_face.svg" id="mysvg"></object>
 
 <div id="draw-group"></div>
 
@@ -22,13 +22,13 @@
       	var svgObject = document.getElementsByTagName('object')[0];
       	svgObject.style.visibility = "hidden";
 
-      	//svgObject.onload = function(){
+      	svgObject.onload = function(){
         	mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
         	var shape = two.interpret(mySvg);
         	shape.translation.set(two.width / 2, two.height);
 			shape.rotation = Math.PI;
 			shape.scale = 0.75;
-      	//};
+      	};
       	two.update();
     </script>
 
