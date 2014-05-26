@@ -15,7 +15,6 @@
 
     <script>
     	var mySvg;
-    	var shape;
 
       	var elem = document.getElementById('draw-group');
 	  	var two = new Two({ fullscreen:true, autostart: true }).appendTo(elem);
@@ -25,11 +24,11 @@
       	console.log(svgObject);
       	svgObject.onload = function(){
         	mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
-        	shape = two.interpret(mySvg);
+        	var shape = two.interpret(mySvg);
+        	shape.translation.set(two.width / 2, two.height);
+			shape.rotation = Math.PI;
+			shape.scale = 0.75;
       	};
-      	shape.translation.set(two.width / 2, two.height);
-		shape.rotation = Math.PI;
-		shape.scale = 0.75;
       	two.update();
     </script>
 
