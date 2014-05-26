@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <head>
+	<script src="two.js"></script>
 </head>
 
 <body>
@@ -61,16 +62,17 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
 
 </div>
 
-<object data="alpha.svg" type="image/svg+xml" id="alphasvg" width="100%" height="100%"></object>
+<object type="image/svg+xml" data="test_face.svg" id="mysvg"></object>
     <script>
-        var a = document.getElementById("alphasvg");
-
-        //it's important to add an load event listener to the object, as it will load the svg doc asynchronously
-        a.addEventListener("load",function(){
-            var svgDoc = a.contentDocument; //get the inner DOM of alpha.svg
-            var delta = svgDoc.getElementById("delta"); //get the inner element by id
-            delta.addEventListener("mousedown",function(){alert('hello world!')},false);    //add behaviour
-        },false);
+      var svgObject = document.getElementsByTagName('object')[0];
+      console.log(svgObject);
+      svgObject.onload = function(){
+        var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
+        var two = new Two();
+        var shape = two.interpret(mySvg);
+        two.update();
+        console.log(shape);
+      };
     </script>
 
 </body>
