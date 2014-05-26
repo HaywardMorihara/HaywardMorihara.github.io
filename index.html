@@ -69,7 +69,8 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
     <script>
 
     var elem = document.getElementById('draw-group');
-	var two = new Two({ width: 285, height: 200 }).appendTo(elem);
+	var two = new Two({ fullscreen: true,
+      autostart: true }).appendTo(elem);
 
       var svgObject = document.getElementsByTagName('object')[0];
       svgObject.style.visibility = "hidden";
