@@ -9,6 +9,8 @@
 
 <body>
 
+<object type="image/svg+xml" data="alpha.svg" id="mysvg"></object>
+
 <div id="container">
 
 <h1 align="center">Nathaniel Morihara</h1>
@@ -79,15 +81,13 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
         var shape = two.interpret(mySvg);
         console.log(shape);
         // And have translation, rotation, scale like all shapes.
-		shape.translation.set(two.width / 2, two.height / 2);
+		shape.translation.set(two.width / 2, two.height);
 		shape.rotation = Math.PI;
 		shape.scale = 0.75;
       };
 
       two.update();
     </script>
-
-    <object type="image/svg+xml" data="alpha.svg" id="mysvg"></object>
 
 </body>
 </html>
