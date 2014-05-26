@@ -66,7 +66,6 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
 
     <script>
       var svgObject = document.getElementsByTagName('object')[0];
-      console.log(svgObject);
       svgObject.onload = function(){
         var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
         var two = new Two();
@@ -74,7 +73,6 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
         two.update();
         console.log(shape);
       };
-      two.play();
     </script>
 
 </body>
