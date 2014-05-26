@@ -61,5 +61,17 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
 
 </div>
 
+<object data="alpha.svg" type="image/svg+xml" id="alphasvg" width="100%" height="100%"></object>
+    <script>
+        var a = document.getElementById("alphasvg");
+
+        //it's important to add an load event listener to the object, as it will load the svg doc asynchronously
+        a.addEventListener("load",function(){
+            var svgDoc = a.contentDocument; //get the inner DOM of alpha.svg
+            var delta = svgDoc.getElementById("delta"); //get the inner element by id
+            delta.addEventListener("mousedown",function(){alert('hello world!')},false);    //add behaviour
+        },false);
+    </script>
+
 </body>
 </html>
