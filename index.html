@@ -64,12 +64,12 @@ document.write("<center><i>Last updated "+months[getMonth()]+' '+getDate()+', '+
 
 </div>
 
+<div id="draw-group"></div>
 
     <script>
-		var two = new Two({
-      		fullscreen: true,
-      		autostart: true
-    	}).appendTo(document.body);
+
+    var elem = document.getElementById('draw-group').children[0];
+	var two = new Two({ width: 285, height: 200 }).appendTo(elem);
 
       var svgObject = document.getElementsByTagName('object')[0];
       svgObject.style.visibility = "hidden";
