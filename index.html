@@ -31,12 +31,11 @@
         	var shape = two.interpret(mySvg);
           console.log(shape);
 
-          console.log(shape.children.alpha);
         	shape.translation.set(two.width / 2,300);
 
           var beta = shape.children.beta;
           console.log(beta);
-          beta.translation(100,1000);
+          beta.scale = 10;
 			    //shape.rotation = Math.PI;
 			    //shape.scale = 0.75;
       	};
