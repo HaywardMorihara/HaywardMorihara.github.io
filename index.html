@@ -30,10 +30,15 @@
           console.log(mySvg);
         	var shape = two.interpret(mySvg);
           console.log(shape);
+
           console.log(shape.children.alpha);
         	shape.translation.set(two.width / 2,300);
-			    shape.rotation = Math.PI;
-			    shape.scale = 0.75;
+
+          var beta = shape.children.beta;
+          console.log(beta);
+          beta.translation(100,1000);
+			    //shape.rotation = Math.PI;
+			    //shape.scale = 0.75;
       	};
       	two.update();
     </script>
