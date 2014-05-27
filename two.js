@@ -2983,7 +2983,6 @@ var Backbone = Backbone || {};
     },
 
     addSelf: function(v) {
-      console.log(v);
       this.x += v.x;
       this.y += v.y;
       return this;
