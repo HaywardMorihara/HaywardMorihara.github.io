@@ -9,22 +9,27 @@
 
 <body>
 
-<object type="image/svg+xml" data="alpha.svg" id="mysvg"></object>
+<object type="image/svg+xml" data="test_face.svg" id="mysvg"></object>
 
 <div id="draw-group"></div>
 
     <script>
-    	var mySvg;
+    	  var mySvg;
 
-      	var elem = document.getElementById('draw-group');
-	  	var two = new Two({ fullscreen:true, autostart: true }).appendTo(elem);
+        var elem = document.getElementById('draw-group');
+        console.log(elem);
+	  	  var two = new Two({ fullscreen:true, autostart: true }).appendTo(elem);
+        console.log(two);
 
       	var svgObject = document.getElementsByTagName('object')[0];
       	svgObject.style.visibility = "hidden";
+        console.log(svgObject);
 
       	svgObject.onload = function(){
         	mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
+          console.log(mySvg);
         	var shape = two.interpret(mySvg);
+          console.log(shape);
         	shape.translation.set(two.width / 2,300);
 			    shape.rotation = Math.PI;
 			    shape.scale = 0.75;
