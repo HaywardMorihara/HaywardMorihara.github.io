@@ -1,46 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <div id="draw-shapes"></div>
+    <script src="lib/two.js"></script>
+    <script src="lib/jquery.js"></script>
+    <style>
+      .assets { display: none; }
+    </style>
+  </head>
+  <body>
 
-<link rel="stylesheet" type="text/css" href="style.css">
-
-<head>
-	<script src="two.js"></script>
-</head>
-
-<body>
-
-<object type="image/svg+xml" data="test_1.svg" id="mysvg"></object>
-
-<div id="draw-group"></div>
-
+    <object type="image/svg+xml" data="SVGs/alpha.svg" id="mysvg"></object>
     <script>
-    	  var mySvg;
-
-        var elem = document.getElementById('draw-group');
-        console.log(elem);
-	  	  var two = new Two({ fullscreen:true, autostart: true }).appendTo(elem);
-        console.log(two);
-
-      	var svgObject = document.getElementsByTagName('object')[0];
-      	svgObject.style.visibility = "hidden";
-        console.log(svgObject);
-
-      	svgObject.onload = function(){
-        	mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
-          console.log(mySvg);
-        	var shape = two.interpret(mySvg);
-          console.log(shape);
-
-        	//shape.translation.set(two.width / 2,300);
-
-          //var beta = shape.children.beta;
-          //console.log(beta);
-          //beta.scale = 2;
-			    //shape.rotation = Math.PI;
-			    //shape.scale = 0.75;
-      	};
-      	two.update();
+      //Load SVG file and draw in Two.js
+      ///////////////////////////////////////////////////////////////////
+      //Will not work offline because of same origin policy
+      //////////////////////////////////////////////////////////////////
+      var two = new Two({
+              fullscreen:true,
+              autostart:true
+      }).appendTo(document.body);
+      var svgObject = document.getElementsByTagName('object')[0];
+      var mySvg;
+      svgObject.onload = function(){
+          mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
+          var shape = two.interpret(mySvg);
+      };
+      two.update();
     </script>
-
-</body>
+  </body>
 </html>
