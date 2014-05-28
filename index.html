@@ -25,6 +25,7 @@
       svgObject.onload = function(){
           mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
           var shape = two.interpret(mySvg);
+          shape.scale = 2;
       };
       two.update();
     </script>
