@@ -15,18 +15,19 @@
       ///////////////////////////////////////////////////////////////////
       //Will not work offline because of same origin policy
       //////////////////////////////////////////////////////////////////
-      var two = new Two({
-              fullscreen:true,
-              autostart:true
-      }).appendTo(document.body);
-      var svgObject = document.getElementsByTagName('object')[0];
-      var mySvg;
-      svgObject.onload = function(){
-          mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
-          var shape = two.interpret(mySvg);
-          shape.scale = 2;
-      };
-      two.update();
+      $(function(){
+
+        var two = new Two({
+                fullscreen:true,
+                autostart:true
+        }).appendTo(document.body);
+        var svgObject = document.getElementsByTagName('object')[0];
+        //svgObject.onload = function(){
+            var mySvg = svgObject.contentDocument.getElementsByTagName('svg')[0];
+            var shape = two.interpret(mySvg);
+        //};
+        two.update();
+      }
     </script>
   </body>
 </html>
