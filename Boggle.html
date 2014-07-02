@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Boggle</title>
+  </head>
+  <body>
+     <div id="container" style="width:1440px">
+      <div id="left-column" style="width:200px; float:left">
+        <h1 id="title">Boggle</h1>
+        <p id="description">Play Boggle!</p>
+        <h2 id="time">180</h2>
+        <button type="button" id="play-button">Play</button>
+      </div>
+      <div id="right-column" style="width:1140px; float:left">
+        <table id="game-board" style="width:100px">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class = "scripts">
+      <script>
+
+      function initializeBoard(){
+        var dice = [];
+        dice[0] = ['A','A','E','E','G','N'];
+        dice[1] = ['E','L','R','T','T','Y'];
+        dice[2] = ['A','O','O','T','T','W'];
+        dice[3] = ['A','B','B','J','O','O'];
+        dice[4] = ['E','H','R','T','V','W'];
+        dice[5] = ['C','I','M','O','T','U'];
+        dice[6] = ['D','I','S','T','T','Y'];
+        dice[7] = ['E','I','O','S','S','T'];
+        dice[8] = ['D','E','L','R','V','Y'];
+        dice[9] = ['A','C','H','O','P','S'];
+        dice[10] = ['H','I','M','N','Qu','U'];
+        dice[11] = ['E','E','I','N','S','U'];
+        dice[12] = ['E','E','G','H','N','W'];
+        dice[13] = ['A','F','F','K','P','S'];
+        dice[14] = ['H','L','N','N','R','Z'];
+        dice[15] = ['D','E','I','L','R','X'];
+
+        var board = document.getElementById('game-board');
+        for(var i = 0; i < 4; i++){
+          for(var j = 0; j < 4; j++){
+            var index = Math.floor(Math.random()*Number(dice.length));
+            var num = dice.splice(index,1)[0][Math.floor(Math.random()*6)];
+            board.rows[i].cells[j].innerHTML = num;
+          }
+        }
+      }
+
+      var isPlaying = false;
+
+      document.getElementById("play-button").onclick = function(){
+        isPlaying = true;
+        document.getElementById('time').innerHTML = 180;
+        initializeBoard();
+      }
+
+
+      window.setInterval(function(){
+        if(isPlaying){
+          var time = document.getElementById('time').innerHTML--;
+          if(time==0){
+            isPlaying = false;
+            document.getElementById('time').innerHTML = "Time's Up!";
+          }
+        }
+      },1000);
+      
+      </script>
+    </div>
+  </body>
+</html>
