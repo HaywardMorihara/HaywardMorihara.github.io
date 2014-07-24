@@ -17,10 +17,8 @@
         }
 
         if (hasGetUserMedia()){
-          // Good to go
-
           var errorCallback = function(e){
-            console.log('Reeeejected!',e);
+            console.log('Rejected',e);
           };
 
           navigator.getUserMedia  = navigator.getUserMedia ||
