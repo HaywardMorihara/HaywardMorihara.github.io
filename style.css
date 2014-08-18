@@ -17,12 +17,13 @@ body:after {
 header{
     position: fixed; 
     width: 100%; 
+    height: 20%;
     z-index: 99999; 
     background-color: #b0c4de;
 }
 
 main {
-    padding: 6cm 7cm 0cm 11cm;
+    padding: 10% 10% 0% 25%;
 }
 
 h1{
