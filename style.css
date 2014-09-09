@@ -15,18 +15,19 @@ body:after {
 }
 
 header{
-    position: fixed; 
+    height:193.5px;
     width: 100%; 
-    height: 20%;
-    z-index: 99999; 
     background-color: #b0c4de;
 }
 
-main {
-    padding: 10% 10% 0% 25%;
+main{
+    padding: 100px 0 0 0;
+}
+
+p{
+    padding: 0 500px;
 }
 
 h1{
     font-size:400%; 
-    padding: 0cm 13cm;
 }
