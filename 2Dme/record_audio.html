@@ -26,13 +26,10 @@
         <button onclick="stopRecordingAudio(this);">Stop Audio Recording</button>
         <h3>Audio Recordings</h3>
         <ul id="audiorecordingslist"></ul>
-        <h3>Log</h3>
-        <pre id="log"></pre>
       </div>
     </div>
     
       <script>
-      //Two.js stuff
         $(function(){
 
           var two_container = document.getElementById('two-container');
@@ -53,17 +50,13 @@
           two.update();
         })
     
-
-    //Getting user media
         function hasGetUserMedia(){
           return !!(navigator.hasGetUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
         }
 
         if (hasGetUserMedia()){
-          // Good to go
-
           var errorCallback = function(e){
-            console.log('Rejected',e);
+            alert('Rejected');
           };
 
           window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -76,16 +69,12 @@
           window.URL = window.URL || window.webkitURL;
 
           audio_context = new AudioContext;
-          __log('Audio context set up.');
-          __log('navigator.getUserMedia' + (navigator.getUserMedia ? 'available.' : 'not present!'));
 
           var video = document.querySelector('video');
 
           if (navigator.getUserMedia) {
-            navigator.getUserMedia({audio: true, video: true}, /*startUserMedia,*/ function(stream) {
-              //I added this?
+            navigator.getUserMedia({audio: true, video: true}, function(stream) {
               startUserMedia(stream);
-              //
               video.src = window.URL.createObjectURL(stream);
             }, errorCallback);
           } else {
@@ -96,41 +85,26 @@
             alert('No web audio support in this browser');
         }
 
-
-
-        //Recorder.js
-        function __log(e,data){
-          log.innerHTML += "\n" + e + " " + (data || '');
-        }
-
         var audio_context;
         var recorder;
 
-        //how do I incorporate this function?
         function startUserMedia(stream){
           var input = audio_context.createMediaStreamSource(stream);
-          __log('Media stream created');
           input.connect(audio_context.destination);
-          __log('Input connected to audio context destination.');
           recorder = new Recorder(input);
-          __log('Recorder initialised.');
         }
 
         function startRecordingAudio(button){
           recorder && recorder.record();
           button.disabled = true;
           button.nextElementSibling.disabled = false;
-          __log('Recording audio...');
         }        
 
         function stopRecordingAudio(button){
           recorder && recorder.stop();
           button.disabled = true;
           button.previousElementSibling.disabled = false;
-          __log('Stopped recording audio.');
-
           createDownloadLink();
-
           recorder.clear();
         }
 
@@ -149,8 +123,6 @@
             li.appendChild(au);
             li.appendChild(hf);
             audiorecordingslist.appendChild(li);
-
-            console.log(audiorecordingslist);
           });
         }
 
