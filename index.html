@@ -1,78 +1,55 @@
 <!doctype html>
-<html>
-  <head>
-    <title>Nathaniel Morihara's Webpage</title>
-    <meta name="keywords" content="Cornell, Computer Science, Software, Development, Engineer, Black Friday, Tetris AI, Soccer">
-    <meta name="description" content="Information about Nathaniel Morihara">
-    <meta name="author" content="Nathaniel Morihara">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-  </head>
-  <body>
-      <header>
-        <p style="padding:0cm 25px; float:left"><img src="nathaniel.jpg" height=193.5 width=344></p>
-        <h1 style ="padding:100px 0 0 450px">Nathaniel Morihara</h1>
-      </header>
+<html lang="en" ng-app="StarterApp">
+<head>
+  <title>Nathaniel Morihara's Webpage</title>
+  <meta name="keywords" content="Cornell, Computer Science, Software, Development, Engineer, Black Friday, Tetris AI, Soccer">
+  <meta name="description" content="Information about Nathaniel Morihara">
+  <meta name="author" content="Nathaniel Morihara">
+  <meta charset="utf-8">
+  <!--link rel="stylesheet" type="text/css" href="style.css"/-->
 
-      <main>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+</head>
+<body layout="column" ng-controller="AppCtrl">
+  <header>
+    <p style="padding:0cm 25px; float:left"><img src="images/nathaniel.jpg" height=193.5 width=344></p>
+    <h1 style ="padding:100px 0 0 450px">Nathaniel Morihara</h1>
+  </header>
 
-        <section id="slide-1" class="homeSlide">
-          <div class="bcg">
-            <div class="hsContainer">
-              <div class="hsContent">
-                <p>I am a student entering my senior year at Cornell University enrolled in the the College of Engineering as a Computer Science major. I have done work with Android development as an intern at Concur Technologies as well as a 3 Day Startup event at Cornell, and I'm currently working as the Javascript Team Lead for a startup called 2Dme. I particularly enjoy front-end development, creating aesthetic and intuitive user interfaces.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+  <main>
 
-        <section id="slide-2" class="homeSlide">
-          <div class="bcg">
-            <div class="hsContainer">
-              <div class="hsContent">
-                <h1 id="slide-2-title" align="center">Patients</h1>
-                <div layout="horizontal" layout-align="space-around">
-                  <!--img src="img/patient_screenshot1.png" class="screenshot"></img-->
-                  <!--img src="img/patient_screenshot2.png" class="screenshot"></img-->
-                </div>
-                <p id="slide-2-text">Patients can complete their CBT homework at their convenience through their smartphones. This will allow them to do their CBT exercises anywhere and with a more natural feel.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+  
+    <md-toolbar layout="row">
+      <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Hello World</h1>
+    </md-toolbar>
+    <div layout="row" flex>
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+          
+        </md-sidenav>
+        <div layout="column" flex id="content">
+            <md-content layout="column" flex class="md-padding">
+              
+            </md-content>
+        </div>
+    </div>
+    
+  </main>
 
-          <h2 style="padding: 0 500px"><a href="NathanielMoriharaResume.pdf" download="NathanielMoriharaResume">Download my resume</a></h2>
+  <footer>
+    <script src="js/date.js"></script>
+  </footer>
 
-          <p>Feel free to e-mail me at nhm37@cornell.edu</p>
+<!-- Angular Material Dependencies -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-aria.min.js"></script>
 
-          <div style="padding: 0 0 300px 0">
-            <img src="tetrisAIscreenshot.png" style="margin: 0 50px 0 100px; width:350px; float:left">
-            <div>
-              <h2><a href="Tetris-master.zip" download="Tetris">Download "Bart"</a></h2>
-              <p>The Tetris AI I wrote for my Artifical Intellignce class (CS 4700). The game was programmed by Brendan Jones at <a href="http://psnbtech.blogspot.com/2012/10/tutorial-java-tetris-game.html">http://psnbtech.blogspot.com/2012/10/tutorial-java-tetris-game.html.</a> This was a group project I worked on with two other students and we came up with an algorithm to calculate the next best move for the AI player to make (whom we named "Bart") based on the current state of the Tetris board. The AI would then make the move in the game. I added the "Bart.java" class and edited a few of the other classes to fit the "Bart" AI.
-              </p>
-            </div>
-          </div>
-
-          <div style="padding: 0 0 250px 0">
-            <img src="blackfridayscreenshot.png" style="margin: 0 25px 0 75px; width:400px; float:left">
-            <div>
-              <h2><a href="http://gdiac.cis.cornell.edu/gallery/download.php?name=blackfriday" target="_blank">Download Black Friday</a></h2> 
-              <p>Video game I developed with a team that won "Audience Favorite" at the Game Design Initiative at Cornell showcase.
-              </p>
-            </div>
-          </div>
-
-          <h3 align="center">Highlight Video I edited for my high school soccer team</p>
-
-          <div align="center"><iframe width="420" height="315" src="//www.youtube.com/embed/embZmCi3LoQ" frameborder="0" allowfullscreen></iframe></div>
-        </main>
-
-        <footer>
-          <script src="date.js"></script>
-        </footer>
-
-        <script src="jquery.js"></script>
-        <script src="app.js"></script>
-  </body>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+  <script src="js/jquery.js"></script>
+</body>
 </html>
