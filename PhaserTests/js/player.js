@@ -1,7 +1,4 @@
 function updatePlayer(player){
-	console.log(game.input.pointer1.positionDown);
-	console.log(game.input.pointer1.y);
-
 	cursors = game.input.keyboard.createCursorKeys();
 
 	// Reset the players velocity (movement)

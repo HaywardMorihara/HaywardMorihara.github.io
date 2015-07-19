@@ -12,27 +12,27 @@ function create() {
 	
 	game.input.addPointer();
 
-	//We're going to be using physics, so enable the Arcade Physics system
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
-	// A simple background for our game
 	ground = game.add.sprite(0,0,'ground');
 	ground.height = game.height;
 	ground.width = game.width;
 
 	player = Zealot(game.width/2,game.height/2);
+	player.body.collideWorldBounds = true;
 
 	zealots = game.add.group();
 	//zealots.enableBody = true;
-
-	for(var i = 0; i < 200; i++){
-		var zealot = Zealot(game.width*Math.random(),game.height*Math.random());
-		zealots.add(zealot);
-	}
 }
 
 function update() {
-	//game.physics.arcade.collide(player,zealots);
+
+	if(Math.random() > 0.5){
+		var zealot = Zealot(game.width,game.height*Math.random());
+		zealots.add(zealot);
+	}
+
+	game.physics.arcade.collide(player,zealots);
 	game.physics.arcade.collide(zealots,zealots);
 	updatePlayer(player);
 	zealots.forEachAlive(updateZealot,this,player);

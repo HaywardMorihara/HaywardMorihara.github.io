@@ -10,19 +10,28 @@ function Zealot(x,y){
 	// We need to enable physics on the player
 	game.physics.arcade.enable(zealot);
 	zealot.body.setSize(18,28);
-	zealot.body.collideWorldBounds = true;
 	
-
 	return zealot;
 }
 
 var zealotSpeed = 300;
 
 function updateZealot(zealot,player){
+
+	if(zealot.body.x < 0){
+		zealot.kill();
+	}
+
 	// Reset the zealots velocity (movement)
 	zealot.body.velocity.x = 0;
 	zealot.body.velocity.y = 0;
 
+	zealot.body.velocity.x = -zealotSpeed;
+	zealot.scale.x = -3;
+	zealot.scale.y = 3;
+	zealot.animations.play('right');
+
+	/*
 	if(player.body.x < zealot.body.x && inAttackRangeX(zealot,player)){
 		zealot.scale.x = -2;
 		zealot.body.velocity.x = -zealotSpeed;
@@ -41,6 +50,7 @@ function updateZealot(zealot,player){
 		zealot.animations.stop();
 		zealot.frame = 8;
 	}
+	*/
 }
 
 function inAttackRangeX(zealot,player){
