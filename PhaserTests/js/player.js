@@ -1,3 +1,20 @@
+function Player(x,y){
+	player = game.add.sprite(x,y, 'zealot');
+
+	player.scale.setTo(2,2);
+	player.anchor.setTo(.5,.5);
+	//Our animations, walking left and right.
+	player.animations.add('right',[4,13,22,31,40,49,58,67],20,true);
+	player.animations.add('up',[0,9,18,27,36,45,54,63],20,true);
+	player.animations.add('down',[8,17,26,35,44,53,62,71],20,true);
+	// We need to enable physics on the player
+	game.physics.arcade.enable(player);
+	player.body.setSize(18,28);
+
+	return player;
+}
+
+
 function updatePlayer(player){
 	cursors = game.input.keyboard.createCursorKeys();
 
