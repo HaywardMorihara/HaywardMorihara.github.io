@@ -1,0 +1,573 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>VPS Bubble Soccer</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script src="controller.js"></script>
+    <script src="player.js"></script> 
+    <script src="ball.js"></script>
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+        var vpsLogo;
+        var titleText;
+        var twoPlayerOption;
+        var fourPlayerOption;
+
+        var matchBeingPlayed = false;
+        var numberOfPlayers = 2;
+        var goalsToWin = 5;
+
+        var controller;
+
+        var fieldLength = 720;
+        var fieldWidth = 540;
+        
+        var wallWidth = 80;
+        var midWallLength = 160;
+        var goalWidth = 540 - 2 * midWallLength;
+
+        var playerSpriteWidth = 93;
+        var playerSpriteHeight = 123;
+
+        var ballScale = .75;
+        var ballSpriteWidth = 64;
+        var ballRadius = ballScale * ballSpriteWidth/2;
+
+        var omfgDogsSpriteWidth = 384;
+        var omfgDogsSpriteHeight = 80;
+        var omfgDogsScale = 3;
+        var omfgDogsWidth = omfgDogsSpriteWidth * omfgDogsScale;
+        var omfgDogsHeight = omfgDogsSpriteHeight * omfgDogsScale;
+
+        var gameWidth = fieldLength + 2 * wallWidth;
+        var gameHeight = fieldWidth + 2 * wallWidth;
+
+        var music;
+
+        var cheer;
+        var bounce;
+
+        var redScore = 0;
+        var blueScore = 0;
+
+        var game = new Phaser.Game(gameWidth, gameHeight, Phaser.CANVAS, 'vps-bubble-soccer', { preload: preload, create: create, update: update, render: render });
+
+        var redScoreBoard;
+        var blueScoreBoard;
+
+        var field;
+
+        var topWall;
+        var bottomWall;
+        var midTopLeftWall;
+        var midBottomLeftWall;
+        var midTopRightWall;
+        var midBottomRightWall;
+
+        var redGoal;
+        var blueGoal;
+
+        var ball;
+        var player1;
+        var player2;
+        var player3;
+        var player4;
+
+        var omfgDogs;
+        var goalCelebrationText;
+
+        function preload() {
+            game.load.audio('omfgdogs_music', ['assets/music/omfgdogs.mp3']);//, 'assets/audio/bodenstaendig_2000_in_rock_4bit.ogg']); //ogg file for Firefox
+            
+            game.load.audio('cheer',['assets/sound_effects/cheer.mp3']);//EpicSoundFX on YouTube
+            game.load.audio('bounce',['assets/sound_effects/bounce.mp3']);//soundbible.com
+
+            game.load.image('vps_logo','assets/sprites/VPS_Logo.png');
+
+            game.load.image('soccer_field', 'assets/sprites/soccerField.jpg');
+            game.load.image('bubble','assets/sprites/bubble2.png');
+            game.load.image('goal','assets/sprites/goal.png');
+
+            game.load.spritesheet('soccer_ball', 'assets/sprites/soccerball.png', 64, 64, 7);
+            game.load.spritesheet('player1','assets/sprites/red_player_1.png',playerSpriteWidth, playerSpriteHeight, 28);
+            game.load.spritesheet('player2','assets/sprites/blue_player_1.png',playerSpriteWidth, playerSpriteHeight, 28);
+            game.load.spritesheet('player3','assets/sprites/red_player_2.png',playerSpriteWidth, playerSpriteHeight, 28);
+            game.load.spritesheet('player4','assets/sprites/blue_player_2.png',playerSpriteWidth, playerSpriteHeight, 28);
+
+            game.load.spritesheet('omfgdogs','assets/sprites/omfgdogs_spritesheet.png',omfgDogsSpriteWidth,omfgDogsSpriteHeight,48);//Thanks PiskellApp
+        }
+
+
+        function create() {
+            initializeMenu();
+        }
+
+        function initializeMenu() {
+            vpsLogo = game.add.sprite(250,0,'vps_logo');
+            vpsLogo.scale.setTo(.5,.5);
+
+            titleText = game.add.text(250, game.world.centerY, "Bubble Soccer", {
+                font: "65px Arial",
+                fill: "#ffffff"
+            });
+
+            twoPlayerOption = game.add.text(250+100, game.world.centerY + 150, "2 Players", {
+                font: "45px Arial",
+                fill: "#ffffff"
+            });
+            twoPlayerOption.inputEnabled = true;
+            twoPlayerOption.events.onInputOver.add(hoverOver,this);
+            twoPlayerOption.events.onInputOut.add(hoverOff, this);
+            twoPlayerOption.events.onInputUp.add(initializeTwoPlayerMatch,this);
+
+            fourPlayerOption = game.add.text(250+100, game.world.centerY + 200, "4 Players", {
+                font: "45px Arial",
+                fill: "#ffffff"
+            });
+            fourPlayerOption.inputEnabled = true;
+            fourPlayerOption.events.onInputOver.add(hoverOver,this);
+            fourPlayerOption.events.onInputOut.add(hoverOff, this);
+            fourPlayerOption.events.onInputUp.add(initializeFourPlayerMatch,this);
+        }
+
+        function hoverOver(text) {
+            text.fill = "#ffff00";
+        }
+
+        function hoverOff(text) {
+            text.fill = "#ffffff";
+        }
+
+        function initializeTwoPlayerMatch(context){
+            initializeMatch(2);
+        }
+
+        function initializeFourPlayerMatch(context){
+            initializeMatch(4);
+        }
+
+        function initializeMatch(numOfPlayers) {
+            destroyMenu();
+
+            matchBeingPlayed = true;
+            numberOfPlayers = numOfPlayers;
+
+            initializeController();
+            initializeMusic();
+            initializeSoundEffects();
+            initializeSprites();
+            initializeAnimations();
+            initializePhysics(); 
+        }
+
+        function initializeController() {
+            //Gamecube only works in Firefox...might be able to get external library if I want
+            game.input.gamepad.start();
+            // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
+            controller = game.input.gamepad.pad1;
+
+            initializeControllerJS(game);
+        }
+
+        function initializeMusic() {
+            music = game.add.audio('omfgdogs_music',1,true);
+            music.play();
+        }
+
+        function initializeSoundEffects() {
+            cheer = game.add.audio('cheer');
+            bounce = game.add.audio('bounce');
+            bounce.addMarker('shortened_bounce',0,.5);
+            bounce.thresholdSpeed = 25;
+        }
+
+        function initializeSprites() {
+            redScoreBoard = game.add.text(16, 16, redScore.toString(), { fill: '#ff0000' });
+            blueScoreBoard = game.add.text(gameWidth-40,16,blueScore.toString(), { fill: '#0000ff'});
+
+            field = game.add.sprite(wallWidth, wallWidth, 'soccer_field');
+
+            topWall = game.add.sprite(0, 0, null);
+            bottomWall = game.add.sprite(0, wallWidth+fieldWidth, null);
+            midTopLeftWall = game.add.sprite(0, wallWidth, null);
+            midBottomLeftWall = game.add.sprite(0, wallWidth+midWallLength+goalWidth, null);
+            midTopRightWall = game.add.sprite(wallWidth+fieldLength, wallWidth, null);
+            midBottomRightWall = game.add.sprite(wallWidth+fieldLength, wallWidth+midWallLength+goalWidth, null);
+
+            ball = game.add.sprite(gameWidth/2,gameHeight/2,'soccer_ball');
+            ball.anchor.setTo(0.5, 0.5);
+            ball.scale.setTo(ballScale,ballScale);
+
+            player1 = initializePlayer(game,1,wallWidth,wallWidth);
+            player2 = initializePlayer(game,2,wallWidth+fieldLength-playerSpriteWidth,wallWidth);
+            if(numberOfPlayers == 4) {
+                player3 = initializePlayer(game,3,wallWidth,wallWidth+2*midWallLength+120);
+                player4 = initializePlayer(game,4,wallWidth+fieldLength-playerSpriteWidth,wallWidth+2*midWallLength+120);
+            }
+
+            redGoal = game.add.sprite(0, wallWidth+midWallLength, 'goal');
+            blueGoal = game.add.sprite(wallWidth+fieldLength, wallWidth+midWallLength, 'goal'); 
+        }
+
+        function initializeAnimations() {
+            ball.rollingBallAnim = ball.animations.add('rolling_ball'); 
+
+            initializePlayerAnim(player1);
+            initializePlayerAnim(player2);
+            if(numberOfPlayers == 4){
+                initializePlayerAnim(player3);
+                initializePlayerAnim(player4);
+            }
+        }
+
+        function initializePhysics() {
+            game.physics.startSystem(Phaser.Physics.ARCADE);
+            if(numberOfPlayers == 2){
+                game.physics.enable([ball,player1,player2,redGoal,blueGoal,topWall,bottomWall,midTopLeftWall,midBottomLeftWall,midTopRightWall,midBottomRightWall], Phaser.Physics.ARCADE);
+            }else if (numberOfPlayers == 4){
+                game.physics.enable([ball,player1,player2,player3,player4,redGoal,blueGoal,topWall,bottomWall,midTopLeftWall,midBottomLeftWall,midTopRightWall,midBottomRightWall], Phaser.Physics.ARCADE);
+            }
+            
+            
+            initializeWallPhysics();
+
+            redGoal.body.setSize(wallWidth/4,goalWidth,0,0);
+            blueGoal.body.setSize(wallWidth/4,goalWidth,wallWidth*3/4,0);
+
+            //ball.body.collideWorldBounds = true;
+            //This sets the image bounce energy for the horizontal
+            // and vertical vectors (as an x,y point). "1" is 100% energy return
+            ball.body.bounce.setTo(1,1);
+            //ball.body.setSize(0,0,ballRadius/3,ballRadius/3);
+            //ball.body.setCircle(ballRadius);
+
+            initializePlayerPhysics(player1);
+            initializePlayerPhysics(player2);
+            if(numberOfPlayers == 4){
+                initializePlayerPhysics(player3);
+                initializePlayerPhysics(player4);
+            }
+        }
+
+        function initializeWallPhysics() {
+            topWall.body.setSize(gameWidth, wallWidth, 0, 0);
+            topWall.body.immovable = true;
+
+            bottomWall.body.setSize(gameWidth, wallWidth, 0, 0);
+            bottomWall.body.immovable = true;
+
+            midTopLeftWall.body.setSize(wallWidth,midWallLength,0,0);
+            midTopLeftWall.body.immovable = true;
+
+            midBottomLeftWall.body.setSize(wallWidth,midWallLength,0,0);
+            midBottomLeftWall.body.immovable = true;
+
+            midTopRightWall.body.setSize(wallWidth,midWallLength,0,0);
+            midTopRightWall.body.immovable = true;
+
+            midBottomRightWall.body.setSize(wallWidth,midWallLength,0,0);
+            midBottomRightWall.body.immovable = true;
+        }
+
+        function update() {
+            if(matchBeingPlayed){
+                updateMatch();
+            }
+        }
+
+        function updateMatch() {
+            updatePhysics();
+            updatePlayer(player1, controller);
+            updatePlayer(player2, controller);
+            if(numberOfPlayers == 4){
+                updatePlayer(player3,controller);
+                updatePlayer(player4,controller);
+            }
+
+            game.physics.arcade.overlap(redGoal, ball, goalScored);
+            game.physics.arcade.overlap(blueGoal, ball, goalScored);
+            
+            animate();
+        }
+
+        function goalScored(goal,ball) {
+            ball.body.position.setTo(gameWidth,gameHeight);//move offscreen for a second
+            cheer.play();
+            if(goal == redGoal){
+                blueScore += 1;
+                blueScoreBoard.setText(blueScore.toString());
+            }else{
+                redScore += 1;
+                redScoreBoard.setText(redScore.toString());
+            }
+            if(redScore >= goalsToWin) {
+                victory("Red");
+            }
+            else if(blueScore >= goalsToWin) {
+                victory("Blue");
+            }
+            else {
+                goalCelebration();
+            }
+        }
+
+        //to(properties, duration, ease, autoStart, delay, repeat, yoyo)
+        function goalCelebration() {
+            omfgDogs = game.add.sprite(-omfgDogsWidth,gameHeight/2 - omfgDogsHeight/2,'omfgdogs');
+            omfgDogs.scale.setTo(omfgDogsScale,omfgDogsScale);
+            omfgDogsRunning = omfgDogs.animations.add('omfgdogs_running');
+            omfgDogsRunning.play(20,true);
+            var tween = game.add.tween(omfgDogs).to( { x: gameWidth }, 2500, Phaser.Easing.Linear.None, true, 0, 0, false);
+            tween.onComplete.add(onCompleteGoalCelebration,this);
+
+            goalCelebrationText = game.add.text(-omfgDogsWidth+200, game.world.centerY+100, "GOOOOOOOOOOOOOOOAL", {
+                font: "65px Arial",
+                fill: "#ffffff"
+            });
+            var tween2 = game.add.tween(goalCelebrationText).to( { x:gameWidth }, 2500, Phaser.Easing.Linear.None, true, 0, 0, false);
+        }
+
+        function onCompleteGoalCelebration() {
+            omfgDogs.destroy();
+            goalCelebrationText.destroy();
+            resetBallAndPlayers();
+        }
+
+        function resetBallAndPlayers() {
+            ball.body.position.setTo(gameWidth/2 - ball.width/2,gameHeight/2 - ball.height/2);
+            ball.body.velocity.setTo(0,0);
+
+            player1.body.position.setTo(wallWidth,wallWidth);
+            player1.body.velocity.setTo(0,0);
+
+            player2.body.position.setTo(wallWidth+fieldLength-playerSpriteWidth,wallWidth);
+            player2.body.velocity.setTo(0,0);
+
+            if(numberOfPlayers == 4){
+                player3.body.position.setTo(wallWidth,wallWidth+2*midWallLength+120);
+                player3.body.velocity.setTo(0,0);
+
+                player4.body.position.setTo(wallWidth+fieldLength-playerSpriteWidth,wallWidth+2*midWallLength+120);
+                player4.body.velocity.setTo(0,0);
+            }
+        }
+
+        function updatePhysics() {
+            //I gotta user grouping here...
+
+            var p1b = game.physics.arcade.collide(player1,ball);
+            var p2b = game.physics.arcade.collide(player2,ball);
+
+            var p1p2 = game.physics.arcade.collide(player1,player2);
+
+            playBounce(p1b,player1,ball);
+            playBounce(p2b,player2,ball);
+
+            playBounce(p1p2,player1,player2);
+
+            game.physics.arcade.collide(player1,topWall);
+            game.physics.arcade.collide(player1,bottomWall);
+            game.physics.arcade.collide(player1,midTopLeftWall);
+            game.physics.arcade.collide(player1,midBottomLeftWall);
+            game.physics.arcade.collide(player1,midTopRightWall);
+            game.physics.arcade.collide(player1,midBottomRightWall);
+
+            game.physics.arcade.collide(player2,topWall);
+            game.physics.arcade.collide(player2,bottomWall);
+            game.physics.arcade.collide(player2,midTopLeftWall);
+            game.physics.arcade.collide(player2,midBottomLeftWall);
+            game.physics.arcade.collide(player2,midTopRightWall);
+            game.physics.arcade.collide(player2,midBottomRightWall);
+
+            game.physics.arcade.collide(ball,topWall);
+            game.physics.arcade.collide(ball,bottomWall);
+            game.physics.arcade.collide(ball,midTopLeftWall);
+            game.physics.arcade.collide(ball,midBottomLeftWall);
+            game.physics.arcade.collide(ball,midTopRightWall);
+            game.physics.arcade.collide(ball,midBottomRightWall);
+
+            if(numberOfPlayers == 4){
+                var p3b = game.physics.arcade.collide(player3,ball);
+                var p4b = game.physics.arcade.collide(player4,ball);
+
+                var p1p3 = game.physics.arcade.collide(player1,player3);
+                var p1p4 = game.physics.arcade.collide(player1,player4);
+
+                var p2p3 = game.physics.arcade.collide(player2,player3);
+                var p2p4 = game.physics.arcade.collide(player2,player4);
+
+                var p3p4 = game.physics.arcade.collide(player3,player4);
+
+                playBounce(p3b,player3,ball);
+                playBounce(p4b,player4,ball);
+
+                playBounce(p1p3,player1,player3);
+                playBounce(p1p4,player1,player4);
+                playBounce(p2p3,player2,player3);
+                playBounce(p2p4,player2,player4);
+                playBounce(p3p4,player3,player3);
+
+                game.physics.arcade.collide(player3,topWall);
+                game.physics.arcade.collide(player3,bottomWall);
+                game.physics.arcade.collide(player3,midTopLeftWall);
+                game.physics.arcade.collide(player3,midBottomLeftWall);
+                game.physics.arcade.collide(player3,midTopRightWall);
+                game.physics.arcade.collide(player3,midBottomRightWall);
+
+                game.physics.arcade.collide(player4,topWall);
+                game.physics.arcade.collide(player4,bottomWall);
+                game.physics.arcade.collide(player4,midTopLeftWall);
+                game.physics.arcade.collide(player4,midBottomLeftWall);
+                game.physics.arcade.collide(player4,midTopRightWall);
+                game.physics.arcade.collide(player4,midBottomRightWall);
+            }
+        }
+
+        function playBounce(isCollision,object1,object2){
+            if(isCollision && (Math.abs(object1.body.speed) > bounce.thresholdSpeed || Math.abs(object2.body.speed) > bounce.thresholdSpeed)){
+                bounce.play('shortened_bounce');
+            }
+        }
+
+        function checkOverlap(spriteA, spriteB) {
+            var boundsA = spriteA.getBounds();
+            var boundsB = spriteB.getBounds();
+
+            return Phaser.Rectangle.intersects(boundsA, boundsB);
+        }
+
+        function victory(winner) {
+            // var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+
+            // text = game.add.text(0, 0, winner+" Team Wins!", style);
+            // text.setTextBounds(0, 100, 800, 100);
+            // text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+
+            //this is duplicate code of goal celebration...consolidate the two
+            omfgDogs = game.add.sprite(-omfgDogsWidth,gameHeight/2 - omfgDogsHeight/2,'omfgdogs');
+            omfgDogs.scale.setTo(omfgDogsScale,omfgDogsScale);
+            omfgDogsRunning = omfgDogs.animations.add('omfgdogs_running');
+            omfgDogsRunning.play(20,true);
+            var tween = game.add.tween(omfgDogs).to( { x: gameWidth }, 3500, Phaser.Easing.Linear.None, true, 0, 0, false);
+            tween.onComplete.add(onCompleteVictoryCelebration,this);
+
+            goalCelebrationText = game.add.text(-omfgDogsWidth+400, game.world.centerY+100, winner+"Team Wins!", {
+                font: "65px Arial",
+                fill: "#ffffff"
+            });
+            var tween2 = game.add.tween(goalCelebrationText).to( { x:gameWidth }, 2500, Phaser.Easing.Linear.None, true, 0, 0, false);
+        }
+
+        function onCompleteVictoryCelebration() {
+            destroyMatch();
+            initializeMenu();
+        }
+
+        function animate() {
+            animatePlayer(player1,controller);
+            animatePlayer(player2,controller);
+            if(numberOfPlayers == 4){
+                animatePlayer(player3,controller);
+                animatePlayer(player4,controller);
+            }
+            animateBall(ball);
+        }
+
+        function render() {
+            if(matchBeingPlayed) {
+                renderMatch();
+            }
+        }
+
+        function renderMatch() {
+            // game.debug.bodyInfo(player1, 32, 32);
+            // game.debug.body(player1);
+            // game.debug.body(player2);
+            // game.debug.body(ball);
+
+            // game.debug.body(topWall);
+            // game.debug.body(bottomWall);
+            // game.debug.body(midTopLeftWall);
+            // game.debug.body(midBottomLeftWall);
+            // game.debug.body(midTopRightWall);
+            // game.debug.body(midBottomRightWall);
+
+            // game.debug.body(redGoal);
+            // game.debug.body(blueGoal);
+
+            // game.debug.text("0:"+controller.axis(0),100,200);
+            // game.debug.text("1:"+controller.axis(1),100,250);
+            // game.debug.text("2:"+controller.axis(2),100,300);
+            // game.debug.text("3:"+controller.axis(3),100,350);
+            // game.debug.text("4:"+controller.axis(4),100,400);
+            // game.debug.text("5:"+controller.axis(5),100,450);
+            // game.debug.text("6:"+controller.axis(6),100,500);
+            // game.debug.text("7:"+controller.axis(7),100,550);
+        }
+
+        function destroyMenu() {
+            vpsLogo.destroy();
+            titleText.destroy();
+            twoPlayerOption.destroy();
+            fourPlayerOption.destroy();
+        }
+
+        function destroyMatch() {
+            matchBeingPlayed = false;
+
+            //controller.destroy();//not sure why exactly this is
+
+            music.destroy();//shouldn't need to destroy
+
+            cheer.destroy();//shouldn't need to destroy
+            bounce.destroy();//shouldn't need to destroy
+
+            redScore = 0;
+            blueScore = 0;
+
+            redScoreBoard.destroy();
+            blueScoreBoard.destroy();
+
+            field.destroy();
+
+            topWall.destroy();
+            bottomWall.destroy();
+            midTopLeftWall.destroy();
+            midBottomLeftWall.destroy();
+            midTopRightWall.destroy();
+            midBottomRightWall.destroy();
+
+            redGoal.destroy();
+            blueGoal.destroy();
+
+            ball.destroy();
+
+            player1.bubble.destroy();
+            player1.destroy();
+            player2.bubble.destroy();
+            player2.destroy();
+
+            if(numberOfPlayers == 4){
+                player3.bubble.destroy();
+                player3.destroy();
+                player4.bubble.destroy();
+                player4.destroy();
+            }
+            numberOfPlayers = 2;
+
+            omfgDogs.destroy();
+            goalCelebrationText.destroy();
+        }
+
+    };
+
+    </script>
+
+    </body>
+</html>
