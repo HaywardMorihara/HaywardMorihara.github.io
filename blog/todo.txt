@@ -1,0 +1,23 @@
+-- Run site locally with: python -m SimpleHTTPServer 8000
+
+To Write:
+- To Do Rules
+- Who am I?
+- Work principles, life principles
+- Quotes
+- Murphy Learnings
+- Book/Movie Reviews
+- Engineering Learnings (internet safety)
+- Writing Learnings (how to use semicolon)
+- Philosophy (stoicism principles) (focus, prototyping)
+- Life Journal, experiences
+- Writing ideas
+- Workouts?
+- Soccer thoughts?
+- Lists (heroes)
+
+Tags
+
+Better blogging platform?
+
+Beautify
