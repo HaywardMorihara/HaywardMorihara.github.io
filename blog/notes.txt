@@ -1,1 +1,3 @@
 -- Run site locally with: python -m SimpleHTTPServer 8000
+-- Using Docsify
+-- If not seeing sidebar update, clear or disable browser cache
