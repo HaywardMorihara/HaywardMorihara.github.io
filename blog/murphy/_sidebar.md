@@ -4,3 +4,4 @@
   * [Don't Get Attached To Things](/murphy/dont_get_attached_to_things)
 * [Books](/books/)
 * [Philosophy](/philosophy/)
+* [Progamming](/programming/)

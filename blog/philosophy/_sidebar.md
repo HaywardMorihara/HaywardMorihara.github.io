@@ -4,3 +4,4 @@
 * [Books](/books/)
 * [Philosophy](/philosophy/)
   * [Ordinary Man with Nothing To Do](/philosophy/ordinary_man)
+* [Progamming](/programming/)

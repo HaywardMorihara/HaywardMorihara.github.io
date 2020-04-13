@@ -1,5 +1,10 @@
 # Nathaniel's Pensieve
 
+## [Why a Healthy Master Branch is Important](/programming/healthy_master)
+_4/12/2020_
+
+Thoughts on why you should strive to keep your repo's master test suite passing -- always.
+
 ## [Ordinary Man with Nothing To Do](/philosophy/ordinary_man)
 _4/5/2020_
 
