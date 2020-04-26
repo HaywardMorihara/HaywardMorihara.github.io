@@ -1,5 +1,10 @@
 # Nathaniel's Pensieve
 
+## [Tips for Performing Code Review](/programming/performing_code_review)
+_4/26/2020_
+
+Ideas for things to learn in pull requests and how you can provide better feedback.
+
 ## [Why a Healthy Master Branch is Important](/programming/healthy_master)
 _4/12/2020_
 

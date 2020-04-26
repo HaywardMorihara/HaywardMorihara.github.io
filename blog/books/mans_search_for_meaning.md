@@ -3,6 +3,8 @@ by Viktor E. Frankl
 
 _1/26/2020_
 
+## Summary
+
 > "...achieving something through his own suffering."
 
 > "Suffering ceases to be suffering at the moment it finds a meaning, such as the meaning of a 
@@ -10,12 +12,14 @@ sacrifice."
 
 > "...harvest of their lives: the deeds done, the loves loved, and ...the sufferings they have gone through with courage and dignity."
 
-Generalizing, there are 3 things that give life meaning: 
+There are 3 things that give life meaning: 
 1. Goals/accomplishments
 2. Experiences/pleasure
 3. Suffering nobly
 
-I feel that the first two are somewhat intuitive. But the third is a bit more profound. Frankl came
+## Takeaways
+
+I feel that the first two points are somewhat intuitive. But the third is a bit more profound. Frankl came
 to the conclusion that "suffering nobly" could give life meaning through his experiences in the 
 concentration camps of the Holocaust. He found that, while some men gave up the will to live because
 they believed there was no change to escape the camps and no hope of accomplishments or pleasure in 

@@ -4,4 +4,5 @@
 * [Books](/books/)
 * [Philosophy](/philosophy/)
 * [Progamming](/programming/)
+  * [Performing Code Review](/programming/performing_code_review)
   * [Healthy Master](/programming/healthy_master)
