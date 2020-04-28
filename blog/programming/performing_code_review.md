@@ -21,7 +21,7 @@ request and think to yourself, "Do I have to do all this?", then there's a good 
 request is "too" big. Too big not only because it's a pain for you to review, but because large 
 changes all happening at once are inherently more risky. I don't think it is ever impolite to _ask_ 
 if a pull request be broken down ("ask" being important - refusing would just be abrasive. More on 
-etiquetter later)
+etiquette later)
 
 - *Ask for a good commit message.*. Not just for your sake. But future generations. Including the 
 code review owner. Inevitably, the history of why code was written will need to be looked at down
@@ -73,7 +73,7 @@ request/comment, whether it's a fact or opinion. This could probably be an entir
   - Don't make it personal. Don't say "I think you did this wrong...", "You could've done this 
   better by...", etc. Generally, leave out the word "you".
   - Only block a pull request if you think there will be a bug. Don't block pull requests for style
-  preferences (and I have a LOT of those). 
+  preferences. 
 
 I encourage EVERY developer to perform code review, _especially_ junior developers. Performing code 
 review as a junior developer is a great way to learn and earn respect with senior developers. I know
