@@ -1,5 +1,7 @@
 # Nathaniel's Pensieve
 
+See my more public Medium posts [here](https://medium.com/@nathanielmorihara)
+
 ## [Tips for Performing Code Review](/programming/performing_code_review)
 _4/26/2020_
 
