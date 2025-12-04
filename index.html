@@ -1,62 +1,258 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="Compass, Game Dev, Cornell, Computer Science, Software, Development, Engineer">
-    <meta name="description" content="Information about Nathaniel Morihara">
-    <meta name="author" content="Nathaniel Morihara">
-    <title>Nathaniel Morihara's Webpage</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <!-- Give the page style (or at least  background color lol) -->
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    <div class="row">
-      <div class="large-12 columns">
-        <h1>Nathaniel Morihara (HaywardMorihara, Murphy's Dad)</h1>
-        <img src="img/nathaniel_and_murphy.jpg" alt="Nathaniel and Murphy" style="width:50%;height:50%">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nathaniel Morihara - Software Engineer, hobbyist game developer & artist. Dad of Murphy the golden retriever.">
+  <meta name="keywords" content="Compass, Game Dev, Cornell, Computer Science, Software, Development, Engineer">
+  <meta name="author" content="Nathaniel Morihara">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haywardmorihara.github.io/">
+  <meta property="og:title" content="Nathaniel Morihara - Software Engineer & Game Developer">
+  <meta property="og:description" content="Software Engineer, hobbyist game developer & artist. Dad of Murphy the golden retriever.">
+  <meta property="og:image" content="https://haywardmorihara.github.io/img/nathaniel_and_murphy.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@haywardmorihara">
+  <meta name="twitter:title" content="Nathaniel Morihara - Software Engineer & Game Developer">
+  <meta name="twitter:description" content="Software Engineer, hobbyist game developer & artist. Dad of Murphy the golden retriever.">
+  <meta name="twitter:image" content="https://haywardmorihara.github.io/img/nathaniel_and_murphy.jpg">
+
+  <title>Nathaniel Morihara - Software Engineer & Game Developer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- SVG Icon Definitions -->
+  <svg style="display: none;" aria-hidden="true">
+    <defs>
+      <!-- Download Icon -->
+      <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </symbol>
+
+      <!-- Twitter Icon -->
+      <symbol id="icon-twitter" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+      </symbol>
+
+      <!-- GitHub Icon -->
+      <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+      </symbol>
+
+      <!-- LinkedIn Icon -->
+      <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </symbol>
+
+      <!-- Medium Icon -->
+      <symbol id="icon-medium" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+      </symbol>
+
+      <!-- Gamepad Icon (for Itch.io) -->
+      <symbol id="icon-gamepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="6" y1="11" x2="10" y2="11"></line>
+        <line x1="8" y1="9" x2="8" y2="13"></line>
+        <line x1="15" y1="12" x2="15.01" y2="12"></line>
+        <line x1="18" y1="10" x2="18.01" y2="10"></line>
+        <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path>
+      </symbol>
+
+      <!-- Image/Camera Icon (for Art) -->
+      <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </symbol>
+
+      <!-- Pen/Edit Icon (for Substack) -->
+      <symbol id="icon-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+        <path d="M2 2l7.586 7.586"></path>
+        <circle cx="11" cy="11" r="2"></circle>
+      </symbol>
+
+      <!-- External Link Icon -->
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-image">
+        <img src="img/nathaniel_and_murphy.jpg" alt="Nathaniel Morihara with his golden retriever Murphy" loading="eager">
       </div>
-    </div>
-    
-    <div class="row">
-      <div class="large-12 columns">
-        <div class="panel">
-          <p>Software Engineer. Hobbyist game dev & artist. Dad of Murphy (my golden retriever).</p>
-          <p><a href="https://twitter.com/haywardmorihara">Twitter</a></p>
-          <p><a href="https://murphysdad.itch.io/">Itch.io</a></p>
-          <p><a href="https://murphysdad.substack.com/">Substack</a></p>
-          <!-- <iframe src="https://murphysdad.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe> -->
-          <p><a href="https://nathanielmorihara.medium.com/">Medium</a></p>
-          <p><a href="https://github.com/HaywardMorihara">Github</a></p>
-          <p><a href="https://photos.google.com/share/AF1QipPpPVWLqI8GCti8X7RZ_2lshg6moQVT79WGl50xKW0oikvGn9wWSo2hTkF_Jjkjig?key=N2RDeTE1SHpmV3NQdHBHaVV3a01DRG03cGtaaFZ3">Art</a></p>
-          <p><a href="https://www.linkedin.com/in/nathaniel-morihara-304b7259/">LinkedIn</a></p>
-          <!-- <p>Writing:<br>
-          </p> -->
-          <!-- https://github.com/HaywardMorihara/gh-tidy -->
-          <!-- <p>Games:<br>
-          	<iframe frameborder="0" src="https://itch.io/embed/937356" width="552" height="167"><a href="https://murphysdad.itch.io/make-amaze">Make Amaze! by MurphysDad</a></iframe>
-            <iframe src="https://itch.io/embed/1019227" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/the-merchant-and-his-daughter">The Merchant and His Daughter by MurphysDad</a></iframe>
-            <iframe src="https://itch.io/embed/1108926" width="552" height="167" frameborder="0"><a href="https://zackavelli.itch.io/codename-pandora">Codename: Pandora by Zackavelli, MurphysDad, Draekdude</a></iframe>
-            <iframe src="https://itch.io/embed/1217153" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/damage-the-walls">Damage the Walls by MurphysDad</a></iframe>
-            <iframe src="https://itch.io/embed/1315350" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/christmas-village-creator">Christmas Village Creator by MurphysDad</a></iframe>
-            <iframe src="https://itch.io/embed/1506173" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/wombat">Wombat Buddy by MurphysDad</a></iframe>
-            <iframe src="https://itch.io/embed/1563572" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/survive-the-island">Survive the Island by MurphysDad, Scrapy Ninja, 00Her0, immortalicecream</a></iframe>
-            <iframe src="https://itch.io/embed/1655521" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/star-wars-mustafar-demo">Star Wars Mustafar Visual Demo by MurphysDad</a></iframe>
-          </p>
-          <p>Art:<br>
-            <iframe src="https://itch.io/embed/1131248?bg_color=000000&amp;fg_color=41c73a&amp;link_color=ef0000&amp;border_color=6f777b" width="552" height="167" frameborder="0"><a href="https://murphysdad.itch.io/sci-fi-facility">Sci-Fi Facility Asset Pack by MurphysDad</a></iframe>
-            <iframe src="https://itch.io/embed/1315872?border_width=5&amp;fg_color=ff2323&amp;link_color=71fa5b&amp;border_color=88efff" width="560" height="175" frameborder="0"><a href="https://murphysdad.itch.io/christmas-village-asset-pack">Christmas Village Asset Pack by MurphysDad</a></iframe>
-          </p> -->
-          <p><a href="http://iramorihara.com/">iramorihara.com</a></p>
+      <div class="hero-content">
+        <h1 class="hero-title">Nathaniel Morihara</h1>
+        <p class="hero-subtitle">HaywardMorihara • Murphy's Dad</p>
+      </div>
+    </header>
+
+    <!-- Bio Section -->
+    <section class="bio">
+      <p class="bio-text">Software Engineer. Hobbyist game dev & artist. Dad of Murphy (my golden retriever).</p>
+    </section>
+
+    <!-- Resume CTA -->
+    <section class="resume-section">
+      <a href="NathanielMoriharaResume.pdf" class="btn-resume" download>
+        <svg class="icon-download" aria-hidden="true">
+          <use href="#icon-download"></use>
+        </svg>
+        <span>Download Resume</span>
+      </a>
+    </section>
+
+    <!-- Social Links -->
+    <section class="social-links">
+      <h2 class="section-title">Connect</h2>
+      <nav class="social-grid">
+        <a href="https://twitter.com/haywardmorihara" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-twitter"></use>
+          </svg>
+          <span>Twitter</span>
+        </a>
+
+        <a href="https://murphysdad.itch.io/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-gamepad"></use>
+          </svg>
+          <span>Itch.io</span>
+        </a>
+
+        <a href="https://murphysdad.substack.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-pen"></use>
+          </svg>
+          <span>Substack</span>
+        </a>
+
+        <a href="https://nathanielmorihara.medium.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-medium"></use>
+          </svg>
+          <span>Medium</span>
+        </a>
+
+        <a href="https://github.com/HaywardMorihara" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-github"></use>
+          </svg>
+          <span>GitHub</span>
+        </a>
+
+        <a href="https://photos.google.com/share/AF1QipPpPVWLqI8GCti8X7RZ_2lshg6moQVT79WGl50xKW0oikvGn9wWSo2hTkF_Jjkjig?key=N2RDeTE1SHpmV3NQdHBHaVV3a01DRG03cGtaaFZ3" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-image"></use>
+          </svg>
+          <span>Art</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/nathaniel-morihara-304b7259/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-linkedin"></use>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <a href="http://iramorihara.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-external"></use>
+          </svg>
+          <span>iramorihara.com</span>
+        </a>
+      </nav>
+    </section>
+
+    <!-- Games Showcase -->
+    <section class="showcase games-showcase">
+      <h2 class="section-title">Games</h2>
+      <div class="showcase-grid">
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/937356" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/make-amaze">Make Amaze! by MurphysDad</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1019227" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/the-merchant-and-his-daughter">The Merchant and His Daughter by MurphysDad</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1108926" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://zackavelli.itch.io/codename-pandora">Codename: Pandora by Zackavelli, MurphysDad, Draekdude</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1217153" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/damage-the-walls">Damage the Walls by MurphysDad</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1315350" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/christmas-village-creator">Christmas Village Creator by MurphysDad</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1506173" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/wombat">Wombat Buddy by MurphysDad</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1563572" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/survive-the-island">Survive the Island by MurphysDad, Scrapy Ninja, 00Her0, immortalicecream</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1655521" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/star-wars-mustafar-demo">Star Wars Mustafar Visual Demo by MurphysDad</a>
+          </iframe>
         </div>
       </div>
-    </div>
-    
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
+    </section>
+
+    <!-- Art Showcase -->
+    <section class="showcase art-showcase">
+      <h2 class="section-title">Art</h2>
+      <div class="showcase-grid">
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1131248?bg_color=000000&fg_color=41c73a&link_color=ef0000&border_color=6f777b" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/sci-fi-facility">Sci-Fi Facility Asset Pack by MurphysDad</a>
+          </iframe>
+        </div>
+
+        <div class="showcase-item">
+          <iframe src="https://itch.io/embed/1315872?border_width=5&fg_color=ff2323&link_color=71fa5b&border_color=88efff" width="100%" height="167" frameborder="0" loading="lazy">
+            <a href="https://murphysdad.itch.io/christmas-village-asset-pack">Christmas Village Asset Pack by MurphysDad</a>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Nathaniel Morihara</p>
+    </footer>
+  </main>
+</body>
 </html>
